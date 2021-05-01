@@ -91,7 +91,30 @@ public class GrafoMatriz {
         return matAdy[vA][vB] == 1;
     }
     
+    public int[][] copiarMatAdy() throws Exception{
+        int[][] nuevaMat = new int[tamMax][tamMax];
+        
+        for (int i = 0; i < tamMax; i++){
+            for(int j = 0; j < tamMax; j++){
+                nuevaMat[i][j] = adyacente(i,j) ? 1 : 0; 
+            }
+        }
+        return nuevaMat;
+    }
     
+    public int[][] warshall() throws Exception{
+        int[][] w = copiarMatAdy();
+        
+        for(int k = 0; k < tamMax; k++){
+            for(int i = 0; i < tamMax; i++){
+                for (int j = 0; j < tamMax; j++){
+                    w[i][j] = Math.min(w[i][j] + w [i][k] * w[k][j], 1);
+                }
+            }
+        }
+        
+        return w;
+    }
     // Getter y Setter
     
 }
