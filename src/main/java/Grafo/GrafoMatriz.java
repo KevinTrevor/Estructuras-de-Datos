@@ -73,6 +73,7 @@ public class GrafoMatriz {
     }
     
     public boolean adyacente(int vA, int vB) throws Exception{
+        /** Método que determina si un vertice es adyacente a otro*/
         if(vA < 0 || vB < 0){
             throw new Exception("Vértice no existe");
         }
@@ -80,6 +81,7 @@ public class GrafoMatriz {
     }
     
     public boolean adyacente(String idA, String idB) throws Exception{
+        /** Método que determina si un vertice es adyacente a otro*/
         int vA = numVertice(idA); 
         int vB = numVertice(idB);
         
