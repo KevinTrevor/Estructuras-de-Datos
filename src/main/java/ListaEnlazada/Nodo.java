@@ -1,4 +1,4 @@
-package Pilas_y_Colas;
+package ListaEnlazada;
 
 public class Nodo <E>{
     /** Atributos de la Clase Nodo */

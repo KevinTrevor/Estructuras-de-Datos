@@ -1,4 +1,4 @@
-package Grafo;
+package GrafoMatriz;
 
 public class GrafoMatriz {
     /** Atributos de la clase GrafoMatriz*/
@@ -102,7 +102,7 @@ public class GrafoMatriz {
         return nuevaMat;
     }
     
-    public int[][] warshall() throws Exception{
+    public int[][] matrizWarshall() throws Exception{
         int[][] w = copiarMatAdy();
         
         for(int k = 0; k < tamMax; k++){
@@ -115,6 +115,7 @@ public class GrafoMatriz {
         
         return w;
     }
+    
     // Getter y Setter
     
 }
