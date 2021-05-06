@@ -1,6 +1,7 @@
 package ArbolBinario;
 
 public class Nodo <E>{
+    public E ID;
     public Nodo izquierdo;
     public Nodo derecho;
     public E valor;
@@ -10,7 +11,8 @@ public class Nodo <E>{
         this.derecho = null;
         this.valor = null;
     }
-    public Nodo(E dato){
+    public Nodo(E dato, E key){
+        this.ID = key;
         this.izquierdo = null;
         this.derecho = null;
         this.valor = dato;

@@ -7,9 +7,9 @@ public class ArbolBusqueda <E> extends ArbolBinario{
         super();
     }
 
-    public Nodo buscar(E valor_buscado){
+    public Nodo buscar(E valor_buscado, E key){
         Nodo resultado = null;
-        Numeros dato = (Numeros) valor_buscado;
+        Nodo dato = new Nodo(valor_buscado, key);
         if (raiz == null){
             return resultado;
         }
@@ -19,38 +19,38 @@ public class ArbolBusqueda <E> extends ArbolBinario{
         return resultado;
     }
     
-    protected Nodo localizar(Nodo subRaiz, Numeros valor_buscado){
+    protected Nodo localizar(Nodo subRaiz, Nodo valor_buscado){
         if (subRaiz == null){
             return null;
         }
-        if (valor_buscado.igualQue(subRaiz.valorNodo())){
+        if ((int) valor_buscado.ID == (int) subRaiz.ID){
             System.out.println(subRaiz.valor);
             return subRaiz; 
         }
-        else if (valor_buscado.menorQue(subRaiz.valorNodo())){
+        else if ((int) valor_buscado.ID < (int) subRaiz.ID){
             localizar(subRaiz.subArbolIzq(),valor_buscado);
         }
-        else if (valor_buscado.mayorQue(subRaiz.valorNodo())){
+        else if ((int) valor_buscado.ID > (int) subRaiz.ID){
             localizar(subRaiz.subArbolDcho(),valor_buscado);
         }
         return subRaiz;
     }
     
-    public void insertar(E valor) throws Exception{    
-        Numeros dato = (Numeros) valor;
+    public void insertar(E valor, E key) throws Exception{    
+        Nodo dato = new Nodo(valor, key);
         raiz = insertar(raiz,dato);
     }
     
-    protected Nodo insertar(Nodo subRaiz, Numeros dato) throws Exception{
+    protected Nodo insertar(Nodo subRaiz, Nodo dato) throws Exception{
         if (subRaiz == null){
-            subRaiz = new Nodo(dato);
+            subRaiz = dato;
         }
-        else if (dato.menorQue(subRaiz.valorNodo())){
+        else if ((int) dato.ID < (int) subRaiz.ID){
             Nodo iz;
             iz = insertar(subRaiz.subArbolIzq(),dato);
             subRaiz.ramaIzq(iz);
         }
-        else if (dato.mayorQue(subRaiz.valorNodo())){
+        else if ((int) dato.ID > (int) subRaiz.ID){
             Nodo dr;
             dr = insertar(subRaiz.subArbolDcho(),dato);
             subRaiz.ramaDcho(dr);
@@ -61,21 +61,21 @@ public class ArbolBusqueda <E> extends ArbolBinario{
         return subRaiz;             
     }
     
-    public void eliminar(E valor) throws Exception{
-        Numeros dato = (Numeros) valor;
+    public void eliminar(E valor, E key) throws Exception{
+        Nodo dato = new Nodo(valor, key);
         raiz = eliminar(raiz,dato);
     }
     
-    protected Nodo eliminar(Nodo subRaiz, Numeros dato) throws Exception{
+    protected Nodo eliminar(Nodo subRaiz, Nodo dato) throws Exception{
         if(subRaiz == null){
             throw new Exception("No se encontró el valor a eliminar");
         }
-        else if(dato.menorQue(subRaiz.valorNodo())){
+        else if((int) dato.ID < (int) subRaiz.ID){
             Nodo iz;
             iz = eliminar(subRaiz.subArbolIzq(),dato);
             subRaiz.ramaIzq(iz);
         }
-        else if(dato.mayorQue(subRaiz.valorNodo())){
+        else if((int) dato.ID > (int) subRaiz.ID){
             Nodo dr;
             dr = eliminar(subRaiz.subArbolDcho(),dato);
             subRaiz.ramaDcho(dr);
