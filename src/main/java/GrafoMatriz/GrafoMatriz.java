@@ -53,6 +53,25 @@ public class GrafoMatriz {
         }
     }
     
+    public void nuevaAristaP(int vA, int vB, int peso) throws Exception{
+        /** Método para añadir una nueva arista con peso entre dos vertices*/
+        if(vA < 0 || vB < 0){
+            throw new Exception("Vértice no existe");
+        }
+        matAdy[vA][vB] = peso;
+    }
+    
+    public void nuevaAristaP(String idA, String idB, int peso) throws Exception{
+        /** Método para añadir una nueva arista con peso entre dos vertices*/
+        int vA = numVertice(idA); 
+        int vB = numVertice(idB);
+        
+        if(vA < 0 || vB < 0){
+            throw new Exception("Vértice no existe");
+        }
+        matAdy[vA][vB] = peso;
+    }
+    
     public void nuevaArista(int vA, int vB) throws Exception{
         /** Método para añadir una nueva arista entre dos vertices*/
         if(vA < 0 || vB < 0){
@@ -77,7 +96,7 @@ public class GrafoMatriz {
         if(vA < 0 || vB < 0){
             throw new Exception("Vértice no existe");
         }
-        return matAdy[vA][vB] == 1;
+        return matAdy[vA][vB] >= 1;
     }
     
     public boolean adyacente(String idA, String idB) throws Exception{
@@ -88,7 +107,7 @@ public class GrafoMatriz {
         if(vA < 0 || vB < 0){
             throw new Exception("Vértice no existe");
         }
-        return matAdy[vA][vB] == 1;
+        return matAdy[vA][vB] >= 1;
     }
     
     public int[][] copiarMatAdy() throws Exception{
@@ -101,21 +120,7 @@ public class GrafoMatriz {
         }
         return nuevaMat;
     }
-    
-    public int[][] matrizWarshall() throws Exception{
-        int[][] w = copiarMatAdy();
-        
-        for(int k = 0; k < tamMax; k++){
-            for(int i = 0; i < tamMax; i++){
-                for (int j = 0; j < tamMax; j++){
-                    w[i][j] = Math.min(w[i][j] + w [i][k] * w[k][j], 1);
-                }
-            }
-        }
-        
-        return w;
-    }
-    
+
     // Getter y Setter
     
 }
