@@ -123,4 +123,7 @@ public class GrafoMatriz {
 
     // Getter y Setter
     
+    public int numeroVertices(){
+        return tamMax;
+    }
 }

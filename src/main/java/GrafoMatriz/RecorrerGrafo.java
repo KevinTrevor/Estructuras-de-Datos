@@ -4,9 +4,9 @@ import Pilas_y_Colas.Cola;
 import Pilas_y_Colas.Pila;
 
 public class RecorrerGrafo {
-        public boolean[] recorridoAnchura(GrafoMatriz g, int origen) throws Exception{
+        static boolean[] recorridoAnchura(GrafoMatriz g, int origen) throws Exception{
         int vM;
-        boolean[] visitados = new boolean[g.tamMax];
+        boolean[] visitados = new boolean[g.numeroVertices()];
         
         Cola c = new Cola();
         
@@ -15,7 +15,7 @@ public class RecorrerGrafo {
             throw new Exception("Vértice inexistente");
         }
         
-        for(int i = 0; i < g.tamMax; i++){
+        for(int i = 0; i < g.numeroVertices(); i++){
             visitados[i] = false;
         }
         
@@ -24,7 +24,7 @@ public class RecorrerGrafo {
        while(!c.esVacio()){
            vM = (int) c.desencolar();
            // Hacer operaciones necesarias
-           for(int k = 0; k < g.tamMax; k++){
+           for(int k = 0; k < g.numeroVertices(); k++){
                if((g.matAdy[vM][k] == 1) && (visitados[k] == false)){
                    visitados[k] = true;
                    c.encolar(k);
@@ -34,9 +34,9 @@ public class RecorrerGrafo {
         return visitados;
     }
     
-    public boolean[] recorridoProfundidad(GrafoMatriz g, int origen) throws Exception{
+    static boolean[] recorridoProfundidad(GrafoMatriz g, int origen) throws Exception{
         int vM;
-        boolean[] visitados = new boolean[g.tamMax];
+        boolean[] visitados = new boolean[g.numeroVertices()];
         
         Pila p = new Pila();
         
@@ -45,7 +45,7 @@ public class RecorrerGrafo {
             throw new Exception("Vértice inexistente");
         }
         
-        for(int i = 0; i < g.tamMax; i++){
+        for(int i = 0; i < g.numeroVertices(); i++){
             visitados[i] = false;
         }
         
@@ -54,7 +54,7 @@ public class RecorrerGrafo {
        while(!p.esVacio()){
            vM = (int) p.pop();
            // Hacer operaciones necesarias
-           for(int k = 0; k < g.tamMax; k++){
+           for(int k = 0; k < g.numeroVertices(); k++){
                if((g.matAdy[vM][k] == 1) && (visitados[k] == false)){
                    visitados[k] = true;
                    p.push(k);
