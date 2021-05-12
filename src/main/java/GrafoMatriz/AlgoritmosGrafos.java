@@ -4,18 +4,63 @@ public class AlgoritmosGrafos {
     
     static GrafoMatriz grafoInverso(GrafoMatriz g) throws Exception{
         GrafoMatriz gInv = new GrafoMatriz(g.tamMax);
+        Vertice[] vs = g.vertices;
         
+        for (int k = 0; k < g.tamMax; k++){
+            gInv.nuevoVert(vs[k].getID());
+        }
         for(int i = 0; i < g.tamMax; i++){
             for(int j = 0; j < g.tamMax; j++){
                 if(g.adyacente(i, j)){
                     gInv.nuevaArista(j, i);
                 }
-                else{
-                    gInv.matAdy[j][i] = 0;
-                }
             }
         }
         return gInv;
+    }
+    
+    static int todosArboles(int[] bosque, int n){
+        int i, w;
+        i = w = -1;
+        
+        do{
+            if(bosque[++i] == 0){
+                w = i;
+            }
+        }while((i < n - 1) && (w == -1));
+        return w;
+    }
+    
+    static void componentesConexos(GrafoMatriz g) throws Exception{
+        int i, v;
+        boolean[] m;
+        int[] descendientes = new int[g.tamMax];
+        int[] ascendientes = new int[g.tamMax];
+        int[] bosque = new int[g.tamMax];
+        
+        GrafoMatriz gInv = grafoInverso(g);
+        Vertice[] verts = g.vertices;
+        
+        v = 0;
+        do{
+            m = RecorrerGrafo.recorridoProfundidad(g, v);
+            for(i = 0; i < g.tamMax; i++){
+                ascendientes[i] = (m[i] != false) ? 1 : 0;
+            }
+            m = RecorrerGrafo.recorridoProfundidad(gInv, v);
+            for(i = 0; i < gInv.tamMax; i++){
+                descendientes[i] = (m[i] != false) ? 1 : 0;
+            }
+            System.out.println("{ ");
+            for(i = 0; i < g.tamMax; i++){
+                if(descendientes[i] * ascendientes[i] == 1){
+                    System.out.println(" "+ verts[i].getID());
+                    bosque[i] = 1;
+                }
+            }
+            System.out.println(" }");
+            v = todosArboles(bosque, g.tamMax);
+        }while(v != -1);
     }
     
     static int[][] copiarMatAdy(GrafoMatriz g) throws Exception{
