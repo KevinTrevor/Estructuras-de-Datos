@@ -12,6 +12,11 @@ public class Nodo <E>{
         this.siguiente = null;
     }
     
+    public Nodo(E dato){
+        this.info = dato;
+        this.siguiente = null;
+    }
+    
     public void ingresar(E datos){
         this.info = datos;
     }

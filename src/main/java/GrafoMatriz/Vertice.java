@@ -27,7 +27,7 @@ public class Vertice <E>{
         return ID;
     }
     
-    public void setVert(int n){
+    public void setNumVert(int n){
         numVert = n;
     }
     

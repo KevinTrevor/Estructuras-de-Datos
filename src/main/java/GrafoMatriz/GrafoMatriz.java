@@ -47,13 +47,13 @@ public class GrafoMatriz {
         
         if(!existe){
             Vertice v = new Vertice(nom);
-            v.setVert(numVerts);
+            v.setNumVert(numVerts);
             vertices[numVerts] = v;
             numVerts++;
         }
     }
     
-    public void nuevaAristaP(int vA, int vB, int peso) throws Exception{
+    public void nuevaArista(int vA, int vB, int peso) throws Exception{
         /** Método para añadir una nueva arista con peso entre dos vertices*/
         if(vA < 0 || vB < 0){
             throw new Exception("Vértice no existe");
@@ -61,7 +61,7 @@ public class GrafoMatriz {
         matAdy[vA][vB] = peso;
     }
     
-    public void nuevaAristaP(String idA, String idB, int peso) throws Exception{
+    public void nuevaArista(String idA, String idB, int peso) throws Exception{
         /** Método para añadir una nueva arista con peso entre dos vertices*/
         int vA = numVertice(idA); 
         int vB = numVertice(idB);
