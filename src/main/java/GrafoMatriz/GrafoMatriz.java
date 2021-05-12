@@ -138,8 +138,9 @@ public class GrafoMatriz {
         g.nuevaArista("Villa Rosa", "Porlamar");
         g.nuevaArista("Porlamar", "San Antonio");
         g.nuevaArista("La Asunción", "Porlamar");
+        g.nuevaArista("Porlamar", "La Asunción");
         g.nuevaArista("San Antonio", "Villa Rosa");
         
-        RecorrerGrafo.recorridoProfundidad(g, 0);
+        RecorrerGrafo.recorridoAnchura(g, 0);
     }
 }

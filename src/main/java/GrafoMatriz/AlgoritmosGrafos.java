@@ -29,7 +29,29 @@ public class AlgoritmosGrafos {
         return nuevaMat;
     }
     
-    static void puntosArticulacion(GrafoMatriz g, int vert, int[] num, int paso, 
+    static int[][] matrizEstrella(GrafoMatriz g, int[][] newMat){ 
+        for(int i = 0; i < g.tamMax; i++){
+            for(int j = 0; j < g.tamMax; j++){
+                for(int k = 0; k < g.tamMax; k++){
+                    newMat[i][j] += g.matAdy[i][k] * g.matAdy[k][j];
+                }
+            }
+        }
+        return newMat;
+    }
+    
+    static void puntosArticulacion(GrafoMatriz g) throws Exception{
+        int[] num = new int[g.tamMax];
+        int[] bajo = new int[g.tamMax];
+        int[] arista = new int[g.tamMax];
+        boolean[] visitado = new boolean[g.tamMax];
+        
+        for(int i = 0; i < g.tamMax; i++){
+            visitado[i] = false;
+        }
+        puntosArticulacion(g, 0, num, 0, visitado, arista, bajo);
+    }
+    private static void puntosArticulacion(GrafoMatriz g, int vert, int[] num, int paso, 
         boolean[] visitado, int[] arista, int[] bajo) throws Exception{
         
         visitado[vert] = true;
