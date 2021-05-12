@@ -53,7 +53,7 @@ public class RecorrerGrafo {
        p.push(vI);
        while(!p.esVacio()){
            vM = (int) p.pop();
-           // Hacer operaciones necesarias
+           System.out.println("Vertice: "+ g.vertices[vM].ID);
            for(int k = 0; k < g.numeroVertices(); k++){
                if((g.matAdy[vM][k] == 1) && (visitados[k] == false)){
                    visitados[k] = true;

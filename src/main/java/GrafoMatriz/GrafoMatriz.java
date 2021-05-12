@@ -126,4 +126,20 @@ public class GrafoMatriz {
     public int numeroVertices(){
         return tamMax;
     }
+    
+    public static void main(String[] args) throws Exception{
+        GrafoMatriz g = new GrafoMatriz(4);
+        
+        g.nuevoVert("Porlamar");
+        g.nuevoVert("La Asunción");
+        g.nuevoVert("Villa Rosa");
+        g.nuevoVert("San Antonio");
+        
+        g.nuevaArista("Villa Rosa", "Porlamar");
+        g.nuevaArista("Porlamar", "San Antonio");
+        g.nuevaArista("La Asunción", "Porlamar");
+        g.nuevaArista("San Antonio", "Villa Rosa");
+        
+        RecorrerGrafo.recorridoProfundidad(g, 0);
+    }
 }
