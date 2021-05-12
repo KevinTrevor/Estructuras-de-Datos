@@ -39,7 +39,15 @@ public class GrafoLista {
         }
     }
     
-    public void nuevaArista(){}
+    public void nuevaArista(int vI, int vF) throws Exception{
+        if(!listAdy[vI].existeArista(vF)){
+            Arista nueva_arista = new Arista(vF);
+            listAdy[vI].setArista(nueva_arista);
+        }
+        else{
+            throw new Exception("Ya existe la arista");
+        }
+    }
     
     // Getter y Setter
 }

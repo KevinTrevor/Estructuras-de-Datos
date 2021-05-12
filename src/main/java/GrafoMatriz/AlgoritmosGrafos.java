@@ -1,15 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GrafoMatriz;
 
-/**
- *
- * @author yara
- */
 public class AlgoritmosGrafos {
+    
+    static GrafoMatriz grafoInverso(GrafoMatriz g) throws Exception{
+        GrafoMatriz gInv = new GrafoMatriz(g.tamMax);
+        
+        for(int i = 0; i < g.tamMax; i++){
+            for(int j = 0; j < g.tamMax; j++){
+                if(g.adyacente(i, j)){
+                    gInv.nuevaArista(j, i);
+                }
+                else{
+                    gInv.matAdy[j][i] = 0;
+                }
+            }
+        }
+        return gInv;
+    }
+    
+    static int[][] copiarMatAdy(GrafoMatriz g) throws Exception{
+        int[][] nuevaMat = new int[g.tamMax][g.tamMax];
+        
+        for (int i = 0; i < g.tamMax; i++){
+            for(int j = 0; j < g.tamMax; j++){
+                nuevaMat[i][j] = g.adyacente(i,j) ? 1 : 0; 
+            }
+        }
+        return nuevaMat;
+    }
     
     static int[][] matrizWarshall(GrafoMatriz g) throws Exception{
         int[][] w = g.copiarMatAdy();

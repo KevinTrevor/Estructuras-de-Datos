@@ -21,6 +21,21 @@ public class VerticeAdy <E>{
         return ID.equals(v.ID);
     }
     
+    public boolean existeArista(int direccion){
+        Nodo aux = aristas.inicio;
+        Arista arisAux = (Arista) aux.info;
+        while(aux.siguiente != null || direccion == arisAux.destino){
+            if(direccion == arisAux.destino){
+                return true;
+            } 
+            else{
+                aux = aux.siguiente;
+                arisAux = (Arista) aux.info;
+            }
+        }
+        return false;    
+    }
+    
     // Getter y Setter
     
     public void setArista(Arista a) throws Exception{
