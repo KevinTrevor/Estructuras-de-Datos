@@ -1,4 +1,4 @@
-package Pilas_y_Colas;
+package Cola;
 
 public class Nodo <E>{
     /** Atributos de la Clase Nodo */

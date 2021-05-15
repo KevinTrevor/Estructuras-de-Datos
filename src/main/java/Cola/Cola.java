@@ -1,4 +1,4 @@
-package Pilas_y_Colas;
+package Cola;
 
 public class Cola <E>{
     public Nodo frente;

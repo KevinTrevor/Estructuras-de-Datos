@@ -1,4 +1,6 @@
-package Pilas_y_Colas;
+package Pila;
+
+import Cola.Nodo;
 
 public class Pila <E>{
     public Nodo tope;

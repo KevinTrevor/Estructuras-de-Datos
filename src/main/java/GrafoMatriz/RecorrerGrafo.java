@@ -1,7 +1,7 @@
 package GrafoMatriz;
 
-import Pilas_y_Colas.Cola;
-import Pilas_y_Colas.Pila;
+import Cola.Cola;
+import Pila.Pila;
 
 public class RecorrerGrafo {
         static boolean[] recorridoAnchura(GrafoMatriz g, int origen) throws Exception{

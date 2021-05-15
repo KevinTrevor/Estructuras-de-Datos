@@ -1,5 +1,5 @@
 package ArbolBinario;
-import Pilas_y_Colas.*;
+import Cola.Cola;
 
 public class ArbolBinario <E>{
     protected Nodo raiz;
