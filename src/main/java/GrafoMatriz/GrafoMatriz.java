@@ -110,23 +110,25 @@ public class GrafoMatriz {
         return matAdy[vA][vB] >= 1;
     }
     
-    public int[][] copiarMatAdy() throws Exception{
-        int[][] nuevaMat = new int[tamMax][tamMax];
-        
-        for (int i = 0; i < tamMax; i++){
-            for(int j = 0; j < tamMax; j++){
-                nuevaMat[i][j] = adyacente(i,j) ? 1 : 0; 
-            }
-        }
-        return nuevaMat;
-    }
-
     // Getter y Setter
     
     public int numeroVertices(){
         return tamMax;
     }
     
+    public int pesoArco(int i, int j){
+        return matAdy[i][j];
+    }
+    
+    public void mostrar(){
+        for(int i = 0; i < tamMax; i++){
+            System.out.print("|");
+            for(int j = 0; j < tamMax; j++){
+                System.out.print(" "+ matAdy[i][j] +" ");   
+            }
+            System.out.print("|\n");
+        }
+    }
     public static void main(String[] args) throws Exception{
         GrafoMatriz g = new GrafoMatriz(4);
         
@@ -141,6 +143,9 @@ public class GrafoMatriz {
         g.nuevaArista("Porlamar", "La Asunción");
         g.nuevaArista("San Antonio", "Villa Rosa");
         
-        RecorrerGrafo.recorridoAnchura(g, 0);
+        //RecorrerGrafo.recorridoAnchura(g, 0);
+        
+        g.mostrar();
+        
     }
 }

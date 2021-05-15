@@ -63,15 +63,23 @@ public class AlgoritmosGrafos {
         }while(v != -1);
     }
     
-    static int[][] copiarMatAdy(GrafoMatriz g) throws Exception{
-        int[][] nuevaMat = new int[g.tamMax][g.tamMax];
+    static int[][] generarAdyacencia(GrafoMatriz g) throws Exception{
+        int[][] newMat = new int[g.tamMax][g.tamMax];
         
         for (int i = 0; i < g.tamMax; i++){
             for(int j = 0; j < g.tamMax; j++){
-                nuevaMat[i][j] = g.adyacente(i,j) ? 1 : 0; 
+                newMat[i][j] = g.adyacente(i,j) ? 1 : 0; 
             }
         }
-        return nuevaMat;
+        return newMat;
+    }
+    
+    static int[][] copiarMatriz(GrafoMatriz g){
+        int[][] newMat = new int[g.tamMax][g.tamMax];
+        for (int i = 0; i < g.tamMax; i++){
+            System.arraycopy(g.matAdy[i], 0, newMat[i], 0, g.tamMax);
+        }
+        return newMat;
     }
     
     static int[][] matrizEstrella(GrafoMatriz g, int[][] newMat){ 
@@ -94,9 +102,9 @@ public class AlgoritmosGrafos {
         for(int i = 0; i < g.tamMax; i++){
             visitado[i] = false;
         }
-        puntosArticulacion(g, 0, num, 0, visitado, arista, bajo);
+        puntosArticulacion(g, 0, -1, num, visitado, arista, bajo);
     }
-    private static void puntosArticulacion(GrafoMatriz g, int vert, int[] num, int paso, 
+    private static void puntosArticulacion(GrafoMatriz g, int vert, int paso, int[] num, 
         boolean[] visitado, int[] arista, int[] bajo) throws Exception{
         
         visitado[vert] = true;
@@ -107,7 +115,7 @@ public class AlgoritmosGrafos {
             if(g.adyacente(vert, k)){
                 if(!visitado[k]){
                     arista[k] = vert;
-                    puntosArticulacion(g, k, num, paso, visitado, arista, bajo);
+                    puntosArticulacion(g, k, paso, num, visitado, arista, bajo);
                     
                     if(bajo[k] >= num[vert]){
                         System.out.println("Vértice" + vert + "es un punto de articulación");
@@ -125,7 +133,7 @@ public class AlgoritmosGrafos {
     // Algoritmos avanzados
     
     static int[][] matrizWarshall(GrafoMatriz g) throws Exception{
-        int[][] w = g.copiarMatAdy();
+        int[][] w = AlgoritmosGrafos.copiarMatriz(g);
         
         for(int k = 0; k < g.numeroVertices(); k++){
             for(int i = 0; i < g.numeroVertices(); i++){
