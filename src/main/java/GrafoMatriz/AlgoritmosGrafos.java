@@ -150,7 +150,11 @@ public class AlgoritmosGrafos {
     }
     
     // Algoritmo de Dijkstra
+    static int INFINITO = 10000000;
     
+    public void caminoMasCorto(){
+    
+    }
     // Algoritmo de Kruskall
     
     class AristaK implements Comparable<AristaK>, Comparator<AristaK>{
