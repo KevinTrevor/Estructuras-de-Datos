@@ -7,6 +7,7 @@ public class UnionFind {
         padres = new int[numVerts];
         
         for(int i = 0; i < numVerts; i++){
+            padres[i] = i;
         }
     }
     
