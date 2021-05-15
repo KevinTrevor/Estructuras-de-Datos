@@ -126,7 +126,7 @@ public class GrafoMatriz {
             for(int j = 0; j < tamMax; j++){
                 System.out.print(" "+ matAdy[i][j] +" ");   
             }
-            System.out.print("|\n");
+            System.out.println("|");
         }
     }
     public static void main(String[] args) throws Exception{
@@ -137,15 +137,23 @@ public class GrafoMatriz {
         g.nuevoVert("Villa Rosa");
         g.nuevoVert("San Antonio");
         
-        g.nuevaArista("Villa Rosa", "Porlamar");
-        g.nuevaArista("Porlamar", "San Antonio");
-        g.nuevaArista("La Asunción", "Porlamar");
-        g.nuevaArista("Porlamar", "La Asunción");
-        g.nuevaArista("San Antonio", "Villa Rosa");
+        g.nuevaArista("Villa Rosa", "Porlamar", 10);
+        g.nuevaArista("Porlamar", "Villa Rosa", 10);
+        
+        g.nuevaArista("Porlamar", "San Antonio", 8);
+        g.nuevaArista("San Antonio", "Porlamar", 8);
+        
+        g.nuevaArista("La Asunción", "Porlamar", 18);
+        g.nuevaArista("Porlamar", "La Asunción", 18);
+        
+        g.nuevaArista("San Antonio", "Villa Rosa", 2);
+        g.nuevaArista("Villa Rosa", "San Antonio", 2);
         
         //RecorrerGrafo.recorridoAnchura(g, 0);
+        //g.mostrar();
         
-        g.mostrar();
+        AlgoritmosGrafos x = new AlgoritmosGrafos();
         
+        x.ArbolExpMinimo(g);
     }
 }
