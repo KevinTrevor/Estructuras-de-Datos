@@ -149,12 +149,6 @@ public class AlgoritmosGrafos {
         return w;
     }
     
-    // Algoritmo de Dijkstra
-    static int INFINITO = 10000000;
-    
-    public void caminoMasCorto(){
-    
-    }
     // Algoritmo de Kruskall
     
     class AristaK implements Comparable<AristaK>, Comparator<AristaK>{
@@ -210,7 +204,7 @@ public class AlgoritmosGrafos {
         System.out.print("{");
         int count = 0;
         if (mont.isEmpty() && ArbolExpansion.size() != g.tamMax-1) {
-            System.out.println("ARBOL INVALIDO");
+            System.out.println("ARBOL INVÁLIDO");
         }
         while (!ArbolExpansion.isEmpty()){
             AristaK temporal = ArbolExpansion.removeFirst();

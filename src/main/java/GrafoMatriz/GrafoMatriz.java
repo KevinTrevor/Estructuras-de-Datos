@@ -152,8 +152,12 @@ public class GrafoMatriz {
         //RecorrerGrafo.recorridoAnchura(g, 0);
         //g.mostrar();
         
-        AlgoritmosGrafos x = new AlgoritmosGrafos();
+       // AlgoritmosGrafos x = new AlgoritmosGrafos();
         
-        x.ArbolExpMinimo(g);
+        //x.ArbolExpMinimo(g);
+        
+        CaminoMinimo y = new CaminoMinimo(g, 0);
+        
+        y.caminoMinimo();
     }
 }
