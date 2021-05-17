@@ -1,5 +1,7 @@
 package GrafoMatriz;
 
+import static GrafoMatriz.CaminoMinimo.INFINITO;
+
 public class GrafoMatriz {
     /** Atributos de la clase GrafoMatriz*/
     public int numVerts;
@@ -110,6 +112,22 @@ public class GrafoMatriz {
         return matAdy[vA][vB] >= 1;
     }
     
+    public int[][] copiarMatrizPesos() throws Exception{
+        int[][] n = new int[tamMax][tamMax];
+        for(int i = 0; i < tamMax; i++){
+            for(int j = 0; j < tamMax; j++){
+                if(i == j){
+                    n[i][j] = 0;
+                }
+                else{
+                    n[i][j] = adyacente(i,j) ? matAdy[i][j] : INFINITO;
+                }
+            }
+        }
+        
+        return n;
+    }
+    
     // Getter y Setter
     
     public int numeroVertices(){
@@ -120,7 +138,7 @@ public class GrafoMatriz {
         return matAdy[i][j];
     }
     
-    public void mostrar(){
+    public void mostrarMatriz(){
         for(int i = 0; i < tamMax; i++){
             System.out.print("|");
             for(int j = 0; j < tamMax; j++){

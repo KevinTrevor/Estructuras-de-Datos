@@ -8,16 +8,16 @@ public class CaminoMinimo {
     GrafoMatriz grafo;
     int[][] pesos;
     int[] ultimo;
-    int[] valorPeso;
+    int[] direccion;
     boolean[] incluidos;
     int origen, numVerts;
         
-    public CaminoMinimo(GrafoMatriz g, int org){
+    public CaminoMinimo(GrafoMatriz g, int org) throws Exception{
         grafo = g;
         numVerts = g.tamMax;
-        pesos = g.matAdy;
+        pesos = g.copiarMatrizPesos();
         ultimo = new int[numVerts];
-        valorPeso = new int[numVerts];
+        direccion = new int[numVerts];
         incluidos = new boolean[numVerts];
         origen = org;
     }
@@ -25,37 +25,34 @@ public class CaminoMinimo {
     public void caminoMinimo(){
         for(int i = 0; i < numVerts; i++){
             incluidos[i] = false;
-            valorPeso[i] = pesos[origen][i];
+            direccion[i] = pesos[origen][i];
             ultimo[i] = origen;
         }
         incluidos[origen] = true;
-        valorPeso[origen] = 0;
+        direccion[origen] = 0;
             
-        int vertMin = 0;
-            
-        for(int i = 1; i < numVerts; i++){
-            vertMin = minimo();
+        for(int i = 0; i < numVerts; i++){
+            int vertMin = minimo();
                 
-            incluidos[i] = true;
-            for(int w = 1; w < numVerts; w++){
+            incluidos[vertMin] = true;
+            for(int w = 0; w < numVerts; w++){
                 if(!incluidos[w]){
-                    if(valorPeso[vertMin] + pesos[vertMin][w] < valorPeso[w]){
-                        valorPeso[w] = valorPeso[vertMin] + pesos[vertMin][w];
+                    if(direccion[vertMin] + pesos[vertMin][w] < direccion[w]){
+                        direccion[w] = direccion[vertMin] + pesos[vertMin][w];
                         ultimo[w] = vertMin;
                     }
                 }
             }
         }
-            
-        mostrarCamino(vertMin);
+        rutas();    
     }
         
     public int minimo(){
         int mx = INFINITO;
-        int v = 1;
-        for(int j = 1; j < numVerts; j++){
-            if(!incluidos[j] && (valorPeso[j] <= mx)){
-                mx = valorPeso[j];
+        int v = 0;
+        for(int j = 0; j < numVerts; j++){
+            if(!incluidos[j] && (direccion[j] <= mx)){
+                mx = direccion[j];
                 v = j;
             }
         }
@@ -66,10 +63,20 @@ public class CaminoMinimo {
         int anterior = ultimo[v];
         if(v != origen){
             mostrarCamino(anterior);
-            System.out.print(" -> ("+ grafo.vertices[v].getID() + ", " + valorPeso[v] + ")");
+            System.out.print(" -> ("+ grafo.vertices[v].getID() + ", " + direccion[v] + ")");
         }
         else{
-            System.out.print("(" + grafo.vertices[origen].getID() + ", " + valorPeso[origen]+ ")");
+            System.out.print("(" + grafo.vertices[origen].getID() + ", " + direccion[origen]+ ")");
+        }
+    }
+    
+    public void rutas(){
+        for(int i = 0; i < numVerts; i++){
+            if(i != origen){
+                System.out.println("\nEl camino minimo entre el vertice "+origen+" y "+i+" es: "+direccion[i]);
+                mostrarCamino(i);
+                System.out.println("");
+            }
         }
     }
 }
