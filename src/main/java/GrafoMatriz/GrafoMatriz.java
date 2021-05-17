@@ -174,7 +174,7 @@ public class GrafoMatriz {
         
         //x.ArbolExpMinimo(g);
         
-        CaminoMinimo y = new CaminoMinimo(g, 0);
+        CaminoMinimo y = new CaminoMinimo(g, 3);
         
         y.caminoMinimo();
     }
