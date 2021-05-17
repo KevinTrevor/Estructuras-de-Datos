@@ -73,7 +73,7 @@ public class CaminoMinimo {
     public void rutas(){
         for(int i = 0; i < numVerts; i++){
             if(i != origen){
-                System.out.println("\nEl camino minimo entre el vertice "+origen+" y "+i+" es: "+direccion[i]);
+                System.out.println("\nEl camino mínimo entre el vertice "+origen+" y "+i+" es: "+direccion[i]);
                 mostrarCamino(i);
                 System.out.println("");
             }
