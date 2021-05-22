@@ -175,9 +175,10 @@ public class GrafoMatriz {
         //x.ArbolExpMinimo(g);
         
         //CaminoMinimo y = new CaminoMinimo(g, 3);
+        //y.caminoMinimo();
         
-        g.mostrarMatriz();
-        //TodoCaminoMinimo y = new TodoCaminoMinimo(g);
-        //y.todosCaminosMinimo();
+        //g.mostrarMatriz();
+        TodoCaminoMinimo y = new TodoCaminoMinimo(g);
+        y.todosCaminosMinimo();
     }
 }

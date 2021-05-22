@@ -43,25 +43,21 @@ public class TodoCaminoMinimo {
     
     public void mostrarCamino(int vI, int vF){
         int siguiente = camino[vI][vF];
-        if(siguiente == -1){
-            System.out.println("-> NO EXISTE UN CAMINO");
+        if(siguiente != -1){
+            mostrarCamino(vI, siguiente);
+            System.out.print(" -> (" + grafo.vertices[vF].getID()+ ", "+ distancia[vI][vF]+")");
         }
         else{
-            if(vF != vI){
-                mostrarCamino(siguiente, vF);
-                System.out.print(" -> v"+ camino[vI][vF]);
-            }
-            else{
-                System.out.print("v"+ camino[vI][vF]);
-            }
-        }    
+            System.out.print("("+ grafo.vertices[vI].getID() + ", " + distancia[vI][vI] + ") -> (" 
+                    + grafo.vertices[vF].getID() + ", " + distancia[vI][vF] + ")");
+        }   
     }
     
     public void rutas(){
        for(int i = 0; i < numVerts; i++){
-            System.out.println("Caminos mínimos del vértice "+ i);
             for(int j = 0; j < numVerts; j++){
                 if(i != j){
+                    System.out.println("\nEl camino mínimo entre el vertice "+i+" y "+j+" es: "+distancia[i][j]);
                     mostrarCamino(i, j);
                     System.out.println("");
                 }    
