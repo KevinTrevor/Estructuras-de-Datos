@@ -54,12 +54,13 @@ public class TodoCaminoMinimo {
     }
     
     public void rutas(){
-       for(int i = 0; i < numVerts; i++){
+        for(int i = 0; i < numVerts; i++){
+            System.out.println("Vértice "+grafo.vertices[i].getID());
             for(int j = 0; j < numVerts; j++){
                 if(i != j){
-                    System.out.println("\nEl camino mínimo entre el vertice "+i+" y "+j+" es: "+distancia[i][j]);
+                    System.out.println("El camino mínimo entre el vertice "+i+" y "+j+" es: "+distancia[i][j]);
                     mostrarCamino(i, j);
-                    System.out.println("");
+                    System.out.println("\n");
                 }    
             }
         }
