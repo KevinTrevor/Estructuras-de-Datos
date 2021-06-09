@@ -37,8 +37,6 @@ public class TodoCaminoMinimo {
                 }
             }
         }
-        
-        rutas();
     }
     
     public void mostrarCamino(int vI, int vF){
@@ -64,5 +62,12 @@ public class TodoCaminoMinimo {
                 }    
             }
         }
+    }
+    
+    public int devolverDistanciaMinima(String inicio, String fin){
+        int vA = grafo.numVertice(inicio);
+        int vB = grafo.numVertice(fin);
+        
+        return distancia[vA][vB];
     }
 }

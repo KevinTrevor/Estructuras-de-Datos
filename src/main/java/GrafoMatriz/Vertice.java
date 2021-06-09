@@ -11,6 +11,11 @@ public class Vertice <E>{
         numVert = -1;
     }
     
+    public Vertice(String nom, E val){
+        ID = nom;
+        valor = val;
+        numVert = -1;
+    }
     // Métodos propios
     
     public boolean equals(Vertice v){

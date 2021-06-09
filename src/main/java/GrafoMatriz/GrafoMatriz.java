@@ -2,15 +2,16 @@ package GrafoMatriz;
 
 import static GrafoMatriz.CaminoMinimo.INFINITO;
 
-public class GrafoMatriz {
+public class GrafoMatriz <E>{
     /** Atributos de la clase GrafoMatriz*/
     public int numVerts;
-    public Vertice[] vertices;
+    public Vertice<E>[] vertices;
     public int[][] matAdy;
     public int tamMax;
     
+    /** Método constructor de la clase GrafoMatriz
+     * @param max*/
     public GrafoMatriz(int max){
-        /** Método constructor de la clase GrafoMatriz*/
         vertices = new Vertice[max];
         matAdy = new int[max][max];
         
@@ -26,9 +27,10 @@ public class GrafoMatriz {
     
     // Métodos propios
     
+    /** Método que verifica que no se encuentra un vertice en el grafo devuelve un numero entero
+     * @param nom
+     * @return */
     public int numVertice(String nom){
-        /** Método que verifica que no se encuentra un vertice en el grafo
-         devuelve un numero entero*/
         Vertice v = new Vertice(nom);
         boolean encontrado = false;
         
@@ -42,13 +44,25 @@ public class GrafoMatriz {
         }
         return (i < numVerts) ? i : -1;
     }
-    
-    public void nuevoVert(String nom){
+      
+    public void nuevoVert(String nombre){
         /** Método para añadir un nuevo vertice al grafo*/
-        boolean existe = numVertice(nom) >= 0;
+        boolean existe = numVertice(nombre) >= 0;
         
         if(!existe){
-            Vertice v = new Vertice(nom);
+            Vertice v = new Vertice(nombre);
+            v.setNumVert(numVerts);
+            vertices[numVerts] = v;
+            numVerts++;
+        }
+    }
+    
+    public void nuevoVert(String nombre, E valor){
+        /** Método para añadir un nuevo vertice al grafo*/
+        boolean existe = numVertice(nombre) >= 0;
+        
+        if(!existe){
+            Vertice v = new Vertice(nombre, valor);
             v.setNumVert(numVerts);
             vertices[numVerts] = v;
             numVerts++;
@@ -72,6 +86,27 @@ public class GrafoMatriz {
             throw new Exception("Vértice no existe");
         }
         matAdy[vA][vB] = peso;
+    }
+    
+    public void nuevaAristaNoDirigida(int vA, int vB, int peso) throws Exception{
+        /** Método para añadir una nueva arista con peso entre dos vertices*/
+        if(vA < 0 || vB < 0){
+            throw new Exception("Vértice no existe");
+        }
+        matAdy[vA][vB] = peso;
+        matAdy[vB][vA] = peso;
+    }
+    
+    public void nuevaAristaNoDirigida(String idA, String idB, int peso) throws Exception{
+        /** Método para añadir una nueva arista con peso entre dos vertices*/
+        int vA = numVertice(idA); 
+        int vB = numVertice(idB);
+        
+        if(vA < 0 || vB < 0){
+            throw new Exception("Vértice no existe");
+        }
+        matAdy[vA][vB] = peso;
+        matAdy[vB][vA] = peso;
     }
     
     public void nuevaArista(int vA, int vB) throws Exception{
@@ -124,7 +159,6 @@ public class GrafoMatriz {
                 }
             }
         }
-        
         return n;
     }
     
@@ -146,39 +180,5 @@ public class GrafoMatriz {
             }
             System.out.println("|");
         }
-    }
-    public static void main(String[] args) throws Exception{
-        GrafoMatriz g = new GrafoMatriz(4);
-        
-        g.nuevoVert("Porlamar");
-        g.nuevoVert("La Asunción");
-        g.nuevoVert("Villa Rosa");
-        g.nuevoVert("San Antonio");
-        
-        g.nuevaArista("Villa Rosa", "Porlamar", 10);
-        g.nuevaArista("Porlamar", "Villa Rosa", 10);
-        
-        g.nuevaArista("Porlamar", "San Antonio", 8);
-        g.nuevaArista("San Antonio", "Porlamar", 8);
-        
-        g.nuevaArista("La Asunción", "Porlamar", 18);
-        g.nuevaArista("Porlamar", "La Asunción", 18);
-        
-        g.nuevaArista("San Antonio", "Villa Rosa", 2);
-        g.nuevaArista("Villa Rosa", "San Antonio", 2);
-        
-        //RecorrerGrafo.recorridoAnchura(g, 0);
-        //g.mostrar();
-        
-       // AlgoritmosGrafos x = new AlgoritmosGrafos();
-        
-        //x.ArbolExpMinimo(g);
-        
-        //CaminoMinimo y = new CaminoMinimo(g, 3);
-        //y.caminoMinimo();
-        
-        //g.mostrarMatriz();
-        TodoCaminoMinimo y = new TodoCaminoMinimo(g);
-        y.todosCaminosMinimo();
     }
 }

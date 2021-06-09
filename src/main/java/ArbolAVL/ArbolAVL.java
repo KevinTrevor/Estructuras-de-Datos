@@ -1,6 +1,6 @@
 package ArbolAVL;
 
-public class ArbolAVL <E>{
+public class ArbolAVL <E, V>{
     public NodoAVL raiz;
     
     public ArbolAVL(){
@@ -51,8 +51,8 @@ public class ArbolAVL <E>{
 	return subRaiz;
     }
     
-    public void insertar(E dato, E key) throws Exception{
-        NodoAVL dato_insertado = new NodoAVL(dato, (int) key);
+    public void insertar(V dato, E key) throws Exception{
+        NodoAVL dato_insertado = new NodoAVL(dato, key);
         raiz = insertar(raiz, dato_insertado);
     }
     
